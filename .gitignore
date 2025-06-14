@@ -54,3 +54,4 @@ TestResult.xml
 nunit-*.xml
 /.vs
 /DSA.Practice/.vs/DSA.Practice
+/DSA.Practice/.vs/ProjectEvaluation
