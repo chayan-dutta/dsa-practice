@@ -19,3 +19,10 @@ Console.WriteLine($"Sum of all array elements - {sumOfAllArrayElements}");
 var (totalEvenNumber, totalOddNumber) = SolvingBasicProblems.CountEvenOdd(array1);
 Console.WriteLine($"No. of even numbers in the array - {totalEvenNumber}");
 Console.WriteLine($"No. of odd numbers in the array - {totalOddNumber}");
+
+bool isTheArraySorted = SolvingBasicProblems.IsSortedArray(array1);
+Console.WriteLine($"{
+    (isTheArraySorted ? 
+        "The array is sorted in ascending order" 
+        : "The array is not sorted in ascending order")
+}");

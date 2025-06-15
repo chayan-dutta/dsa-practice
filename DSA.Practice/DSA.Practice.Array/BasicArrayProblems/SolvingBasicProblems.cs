@@ -87,4 +87,23 @@ public class SolvingBasicProblems()
         }
         return reverseArray;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="myArray"></param>
+    /// <returns></returns>
+    public static bool IsSortedArray(int[] myArray)
+    {
+        int n = myArray[0];
+
+        for(int i = 1; i < myArray.Length; i++)
+        {
+            if (n <= myArray[i])
+                n = myArray[i];
+            else
+                return false;
+        }
+        return true;
+    }
 }
