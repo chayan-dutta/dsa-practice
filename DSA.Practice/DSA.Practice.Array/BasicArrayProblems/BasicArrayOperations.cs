@@ -93,5 +93,40 @@
             }
             return resultArray;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static int[] InsertElementInSortedArray(int[] array, int value)
+        {
+            ArgumentNullException.ThrowIfNull(array);
+
+            int[] newArr = new int[array.Length + 1];
+
+
+            // Find index
+            int index = array.Length;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] >= value)
+                {
+                    index = i;
+                    break;
+                }               
+            }
+            
+            array.CopyTo(newArr, 0);
+
+            // Doing a right shift
+            for (int i = newArr.Length - 1; i > index; i--)
+                newArr[i] = newArr[i - 1];
+
+            newArr[index] = value;
+            return newArr;                
+        }
     }
 }

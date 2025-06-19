@@ -41,7 +41,10 @@ Console.WriteLine("*** Delete element from array ***");
 newArr = BasicArrayOperations.DeleteElementFromArray(array, 4);
 PrintArray(newArr);
 
-
+Console.WriteLine("*** Insert element to an Sorted Array ***");
+int[] sortedArr = { 10, 20, 30, 40, 60 }; 
+newArr = BasicArrayOperations.InsertElementInSortedArray(sortedArr, 90);
+PrintArray(newArr);
 
 
 
