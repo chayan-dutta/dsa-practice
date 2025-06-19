@@ -26,3 +26,31 @@ Console.WriteLine($"{
         "The array is sorted in ascending order" 
         : "The array is not sorted in ascending order")
 }");
+
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("************* ARRAY BASIC OPERATIONS *************");
+Console.WriteLine();
+
+int[] array = {1, 3, 4, 5, 6};
+Console.WriteLine("*** Insert element to array ***");
+var newArr = BasicArrayOperations.InsertElementInArray<int>(array, 1, 2);
+PrintArray(newArr);
+
+Console.WriteLine("*** Delete element from array ***");
+newArr = BasicArrayOperations.DeleteElementFromArray(array, 4);
+PrintArray(newArr);
+
+
+
+
+
+
+
+
+static void PrintArray<T>(T[] array)
+{
+   for (int i = 0;i < array.Length; i++)
+        Console.Write(array[i] + "  ");
+   Console.WriteLine();
+}
