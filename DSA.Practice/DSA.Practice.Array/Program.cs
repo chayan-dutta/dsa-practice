@@ -51,6 +51,11 @@ int[] arrayWithDuplicate = { 1, 45, 6, 6, 1, 1, 33, 44, 1, 11, 1, 11, 1 };
 var modifiedArr = BasicArrayOperations.RemoveAllOccurrencesOfAnArray(arrayWithDuplicate, 1);
 PrintArray(modifiedArr);
 
+Console.WriteLine("*** Reverse array ***");
+var reversedArr = BasicArrayOperations.ReverseArray(array1);
+PrintArray(reversedArr);
+
+
 
 
 

@@ -157,5 +157,26 @@
 
             return result;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static T[] ReverseArray<T>(T[] array)
+        {
+            T[] result = new T[array.Length];
+
+            int index = 0;
+
+            for (int i = array.Length - 1; i >= 0; i--)
+            {
+                result[index] = array[i];
+                index++;
+            }
+
+            return result;
+        }
     }
 }
