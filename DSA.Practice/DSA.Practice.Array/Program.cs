@@ -46,6 +46,11 @@ int[] sortedArr = { 10, 20, 30, 40, 60 };
 newArr = BasicArrayOperations.InsertElementInSortedArray(sortedArr, 90);
 PrintArray(newArr);
 
+Console.WriteLine("*** Remove all occurrences from an array ***");
+int[] arrayWithDuplicate = { 1, 45, 6, 6, 1, 1, 33, 44, 1, 11, 1, 11, 1 };
+var modifiedArr = BasicArrayOperations.RemoveAllOccurrencesOfAnArray(arrayWithDuplicate, 1);
+PrintArray(modifiedArr);
+
 
 
 

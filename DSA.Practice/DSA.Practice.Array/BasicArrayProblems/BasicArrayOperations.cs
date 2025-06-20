@@ -128,5 +128,34 @@
             newArr[index] = value;
             return newArr;                
         }
+
+        public static int[] RemoveAllOccurrencesOfAnArray(int[] array, int value)
+        {
+            // Step 1: Validate input
+            ArgumentNullException.ThrowIfNull(array);
+
+            int k = 0; // 'k' is the write index — the next position where we'll write a valid (non-deleted) value
+
+            // Step 2: Loop through each element in the original array
+            for (int i = 0; i < array.Length; i++)
+            {
+                // If the current element is not equal to the value to remove,
+                // copy it to the 'k'th index and move 'k' forward
+                if (array[i] != value)
+                {
+                    array[k] = array[i];  // Overwrite from the front (shifting left)
+                    k++;                  // Move write index to next slot
+                }
+
+                // If array[i] == value, we skip copying — effectively removing it from the new version
+            }
+
+            // Step 3: At this point, first 'k' elements of array are the cleaned version (without the value)
+            // So we create a new array of length 'k' to return just those elements
+            int[] result = new int[k];
+            System.Array.Copy(array, result, k);  // Copy only the cleaned part
+
+            return result;
+        }
     }
 }
