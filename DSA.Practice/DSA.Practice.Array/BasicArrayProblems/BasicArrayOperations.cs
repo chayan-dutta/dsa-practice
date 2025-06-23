@@ -176,6 +176,7 @@
                 index++;
             }
 
+            // We can also use Array.Reverse() built-in method in C#
             return result;
         }
     }

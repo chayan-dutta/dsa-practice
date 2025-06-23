@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36203.30 d17.14
+VisualStudioVersion = 17.14.36203.30
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA.Practice.Array", "DSA.Practice.Array\DSA.Practice.Array.csproj", "{EBCF3DD0-9F0A-47FC-B360-3F60B58610CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA.Practice.Searching", "DSA.Practice.Searching\DSA.Practice.Searching.csproj", "{FA1526DE-A6A3-4F2F-8D99-844BF60AFDF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA.Practice.Sorting", "DSA.Practice.Sorting\DSA.Practice.Sorting.csproj", "{A450FF75-4319-480B-93DC-DE07EEECF0A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA.Practice.Strings", "DSA.Practice.Strings\DSA.Practice.Strings.csproj", "{B950E234-5788-4814-98E4-8A33EC63BB25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A450FF75-4319-480B-93DC-DE07EEECF0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A450FF75-4319-480B-93DC-DE07EEECF0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A450FF75-4319-480B-93DC-DE07EEECF0A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B950E234-5788-4814-98E4-8A33EC63BB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B950E234-5788-4814-98E4-8A33EC63BB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B950E234-5788-4814-98E4-8A33EC63BB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B950E234-5788-4814-98E4-8A33EC63BB25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
