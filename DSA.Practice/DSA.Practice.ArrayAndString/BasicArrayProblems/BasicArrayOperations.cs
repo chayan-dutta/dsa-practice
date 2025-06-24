@@ -1,4 +1,4 @@
-﻿namespace DSA.Practice.Array.BasicArrayProblems
+﻿namespace DSA.Practice.ArrayAndString.BasicArrayProblems
 {
     public class BasicArrayOperations
     {

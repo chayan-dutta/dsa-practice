@@ -1,4 +1,4 @@
-﻿namespace DSA.Practice.Strings.BasicStringProblems;
+﻿namespace DSA.Practice.ArrayAndString.BasicStringProblems;
 
 public class BeginnerLevelStringProblems
 {
