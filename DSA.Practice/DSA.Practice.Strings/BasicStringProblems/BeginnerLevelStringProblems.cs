@@ -167,4 +167,75 @@ public class BeginnerLevelStringProblems
 
         return occurrances;
     }
+
+    /// <summary>
+    /// Finds the first non-repeating character in the input string.
+    /// Returns the first character that appears exactly once in the string.
+    /// </summary>
+    /// <param name="str">The input string to analyze.</param>
+    /// <returns>The first non-repeating character.</returns>
+    /// <exception cref="ArgumentException">Thrown when input is null or empty.</exception>
+    /// <exception cref="InvalidOperationException">Thrown if no non-repeating character is found.</exception>
+    public static char FirstNonRepeatingCharacter(string str)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
+
+        char[] charArr = str.ToCharArray();
+
+        // Count character frequencies
+        Dictionary<char, int> occurrance = CountOccurranceOfEachCharacter(str);
+
+        foreach (char c in charArr)
+        {
+            // TryGetValue is safe and efficient
+            occurrance.TryGetValue(c, out int value);
+            if (value == 1)
+                return c;
+        }
+
+        // No non-repeating character found
+        throw new InvalidOperationException("No non-repeating character found in the input string.");
+    }
+
+    /// <summary>
+    /// Checks if two strings are anagrams of each other.
+    /// This method ignores spaces and is case-insensitive.
+    /// </summary>
+    /// <param name="str1">The first string.</param>
+    /// <param name="str2">The second string.</param>
+    /// <returns>True if both strings are anagrams; otherwise, false.</returns>
+    /// <exception cref="ArgumentException">Thrown if either input is null or empty.</exception>
+    public static bool AreAnagrams(string str1, string str2)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(str1, nameof(str1));
+        ArgumentException.ThrowIfNullOrEmpty(str2, nameof(str2));
+
+        // Normalize both strings: remove spaces, convert to lowercase
+        string normalizedStr1 = str1.Replace(" ", "").ToLower();
+        string normalizedStr2 = str2.Replace(" ", "").ToLower();
+
+        // Early exit: if lengths differ, they cannot be anagrams
+        if (normalizedStr1.Length != normalizedStr2.Length)
+            return false;
+
+        // Build frequency dictionary for str1
+        Dictionary<char, int> charCounts = CountOccurranceOfEachCharacter(str1);
+
+        // Subtract counts using str2
+        foreach (char c in normalizedStr2)
+        {
+            if (!charCounts.ContainsKey(c))
+                return false;
+
+            charCounts[c]--;
+
+            if (charCounts[c] < 0)
+                return false; // More occurrences in str2 than in str1
+        }
+
+        // All character counts should be zero now
+        return true;
+    }
+
+
 }

@@ -17,6 +17,19 @@ Dictionary<char, int> occurrencesOfEachChars = BeginnerLevelStringProblems.Count
 Console.WriteLine("4. The Occurrences of all character in the string {0}", str);
 PrintDictionary(occurrencesOfEachChars);
 
+str = "ababbbaabac";
+char firstNonRepeating = BeginnerLevelStringProblems.FirstNonRepeatingCharacter(str);
+Console.WriteLine($"First non repeating character of {str}, is {firstNonRepeating}");
+
+string firstStr = "silent";
+string secondStr = "listen";
+bool areAnagrams = BeginnerLevelStringProblems.AreAnagrams(firstStr, secondStr);
+Console.WriteLine($"{
+    (areAnagrams ?
+        "Both the strings '{0}' and '{1}' are anagrams" :
+        "The string '{0}' and '{1}' are not anagrams ")
+}", firstStr, secondStr);
+
 /// <summary>
 /// Prints all key-value pairs from the provided dictionary to the console.
 /// </summary>
