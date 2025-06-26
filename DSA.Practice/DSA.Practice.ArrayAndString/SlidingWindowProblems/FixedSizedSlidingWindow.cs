@@ -106,4 +106,51 @@ public class FixedSizedSlidingWindow
 
         return count;
     }
+
+    /// <summary>
+    /// Problem:
+    /// Find the minimum sum of any contiguous subarray of size k.
+    /// 
+    /// Approach:
+    /// - Use the sliding window technique.
+    /// - Start by calculating the sum of the first k elements (first window).
+    /// - Slide the window through the array, updating the sum by removing
+    ///   the outgoing element and adding the incoming one.
+    /// - Track the minimum sum seen during the traversal.
+    /// 
+    /// Time Complexity: O(n)
+    /// Space Complexity: O(1)
+    /// </summary>
+    /// <param name="nums">The input array</param>
+    /// <param name="k">Size of each subarray (window)</param>
+    /// <returns>Minimum sum of any subarray of size k</returns>
+    /// <exception cref="ArgumentException">Thrown if k is larger than array length</exception>
+    public static int MinimumSumSubarrayOfSizeK(int[] nums, int k)
+    {
+        int n = nums.Length;
+
+        if (k > n)
+            throw new ArgumentException("Window size is greater than array length.");
+
+        int windowSum = 0;
+
+        // Step 1: Calculate the sum of the first window of size k
+        for (int i = 0; i < k; i++)
+            windowSum += nums[i];
+
+        int minSum = windowSum;
+
+        // Step 2: Slide the window from index 1 to n - k
+        // We slide until the last valid window starts at index (n - k)
+        for (int i = 1; i <= n - k; i++)
+        {
+            // Remove the first element of the previous window and add the new element
+            windowSum = windowSum - nums[i - 1] + nums[i + k - 1];
+
+            // Update the minimum sum
+            minSum = Math.Min(minSum, windowSum);
+        }
+
+        return minSum;
+    }
 }
