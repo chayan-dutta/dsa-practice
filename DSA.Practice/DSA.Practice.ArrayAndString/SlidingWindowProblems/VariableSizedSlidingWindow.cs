@@ -218,4 +218,38 @@ public class VariableSizedSlidingWindow
         }
         return maxLength;
     }
+    /// <summary>
+    /// Returns the length of the longest substring without repeating characters.
+    /// Uses sliding window and a HashSet to track current unique characters in window.
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public static int LengthOfLongestSubstringWithoutRepeatingChars(string s)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(s, nameof(s));
+
+        int left = 0, maxLength = 0;
+        HashSet<char> uniqueChars = new();
+
+        // Right pointer moves through the string
+        for (int right = 0; right < s.Length; right++)
+        {
+            char rightChar = s[right];
+
+            // If character already exists, shrink the window from the left
+            while (uniqueChars.Contains(rightChar))
+            {
+                uniqueChars.Remove(s[left]);
+                left++; // move left pointer forward to remove duplicates
+            }
+
+            // Add the current character to the set (now it's guaranteed to be unique in window)
+            uniqueChars.Add(rightChar);
+
+            // Update the maximum length found so far
+            maxLength = Math.Max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
 }

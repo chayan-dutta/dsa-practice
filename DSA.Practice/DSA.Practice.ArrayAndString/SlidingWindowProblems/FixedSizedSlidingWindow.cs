@@ -153,4 +153,49 @@ public class FixedSizedSlidingWindow
 
         return minSum;
     }
+
+    /// <summary>
+    /// Returns the maximum number of vowels in any substring of length k using sliding window.
+    /// Time Complexity: O(n)
+    /// Space Complexity: O(1) — only a fixed-size vowel set is used
+    /// </summary>
+    public static int MaxVowels(string s, int k)
+    {
+        // Handle edge cases early
+        if (string.IsNullOrEmpty(s) || k <= 0)
+            return 0;
+
+        // Use a HashSet for quick lookup of vowels (both lowercase and uppercase)
+        HashSet<char> vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+
+        int maxVowels = 0;       // Final answer: max vowels found in any window
+        int currentVowels = 0;   // Number of vowels in the current sliding window
+
+        // Initialize the first window of size k
+        for (int i = 0; i < k; i++)
+        {
+            if (vowels.Contains(s[i]))
+                currentVowels++;
+        }
+
+        // First window count is our initial maximum
+        maxVowels = currentVowels;
+
+        // Slide the window across the rest of the string
+        for (int i = k; i < s.Length; i++)
+        {
+            // Remove the character that's going out of the window (leftmost)
+            if (vowels.Contains(s[i - k]))
+                currentVowels--;
+
+            // Add the new character entering the window (rightmost)
+            if (vowels.Contains(s[i]))
+                currentVowels++;
+
+            // Update max if the current window has more vowels
+            maxVowels = Math.Max(maxVowels, currentVowels);
+        }
+
+        return maxVowels;
+    }
 }
