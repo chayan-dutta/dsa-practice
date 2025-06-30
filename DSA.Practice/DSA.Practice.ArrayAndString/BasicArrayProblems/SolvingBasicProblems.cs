@@ -106,4 +106,58 @@ public class SolvingBasicProblems()
         }
         return true;
     }
+
+    /// <summary>
+    /// Finds the number of unique pairs in the array whose sum is equal to k.
+    /// </summary>
+    /// <param name="arr">Input array of integers</param>
+    /// <param name="k">Target sum for the pairs</param>
+    /// <returns>Number of unique pairs whose sum is equal to k</returns>
+    public static int TargetSum(int[] arr, int k)
+    {
+        int noOfPairs = 0;
+
+        // This set keeps track of numbers we've already seen
+        HashSet<int> seen = new();
+
+        // This set ensures we count each pair only once
+        HashSet<(int, int)> uniquePairs = new();
+
+        foreach (int num in arr)
+        {
+            int complement = k - num;
+
+            if (seen.Contains(complement))
+            {
+                // Order the pair so (a, b) and (b, a) are treated the same
+                var orderedPair = (Math.Min(num, complement), Math.Max(num, complement));
+
+                if (!uniquePairs.Contains(orderedPair))
+                {
+                    uniquePairs.Add(orderedPair);
+                    noOfPairs++;
+                }
+            }
+            seen.Add(num);
+        }
+
+        return noOfPairs;
+    }
+
+    // Find unique number in a given array where all other elements are being repeated twice
+    // with one value being unique
+    public static int UniqueElementOfArrayWhereOthersDuplicate(int[] arr)
+    {
+        Dictionary<int, int> uniqueTracker = [];
+
+        foreach(int num in arr)
+        {
+            if (!uniqueTracker.ContainsKey(num))
+                uniqueTracker.Add(num, 1);
+            else
+                uniqueTracker[num]++;
+        }
+        var kvp = uniqueTracker.FirstOrDefault(x => x.Value == 1);
+        return kvp.Key;
+    }
 }
