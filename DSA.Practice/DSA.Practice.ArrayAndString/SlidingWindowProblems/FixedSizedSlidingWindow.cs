@@ -198,4 +198,73 @@ public class FixedSizedSlidingWindow
 
         return maxVowels;
     }
+
+    /// <summary>
+    /// Find all annnagrams of a string -
+    /// Given two strings s and p, return an array of all the start indices of p's anagrams in s. 
+    /// You may return the answer in any order.
+    /// 
+    /// Input: s = "cbaebabacd", p = "abc"
+    /// Output: [0, 6]
+    /// Explanation:
+    /// The substring with start index = 0 is "cba", which is an anagram of "abc".
+    /// The substring with start index = 6 is "bac", which is an anagram of "abc".
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="p"></param>
+    /// <returns>
+    /// Leetcode 438 
+    /// Yt reference for approach - https://youtu.be/fYgU6Bi2fRg?si=phvAslJDvlhpCpBu
+    /// </returns>
+    public static IList<int> FindAnagrams(string s, string p)
+    {
+        int w = p.Length; // Length of the anagram pattern, i.e., window size
+        int n = s.Length; // Length of the input string
+        List<int> result = []; // List to store starting indices of anagram matches
+
+        // Edge case: if pattern is longer than the input string, no match is possible
+        if (n < w)
+            return result;
+
+        int[] pCount = new int[26]; // Frequency array for characters in pattern string 'p'
+        int[] sCount = new int[26]; // Frequency array for current sliding window in string 's'
+
+        // Step 1: Build frequency map for the pattern and the first window in 's'
+        for (int i = 0; i < w; i++)
+        {
+            pCount[p[i] - 'a']++; // Increment count for pattern character
+            sCount[s[i] - 'a']++; // Increment count for window character
+        }
+
+        // Step 2: Compare first window with pattern
+        if (AreTwoArraysEqual(pCount, sCount))
+            result.Add(0); // Anagram found at starting index 0
+
+        // Step 3: Slide the window from index 1 to (n - w)
+        for (int i = 1; i <= n - w; i++)
+        {
+            // Remove character that is sliding out of the window (at i - 1)
+            sCount[s[i - 1] - 'a']--;
+
+            // Add character that is sliding into the window (at i + w - 1)
+            sCount[s[i + w - 1] - 'a']++;
+
+            // Step 4: Compare current window frequency with pattern frequency
+            if (AreTwoArraysEqual(pCount, sCount))
+                result.Add(i); // Anagram found at current starting index 'i'
+        }
+
+        return result;
+    }
+
+    // Compares two frequency arrays of length 26 (for 'a' to 'z')
+    private static bool AreTwoArraysEqual(int[] pCount, int[] sCount)
+    {
+        for (int i = 0; i < 26; i++)
+        {
+            if (pCount[i] != sCount[i])
+                return false;
+        }
+        return true;
+    }
 }
