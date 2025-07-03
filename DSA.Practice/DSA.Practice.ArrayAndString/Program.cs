@@ -14,6 +14,18 @@ for (int i = 0; i < reverse.Length; i++)
 
 Console.WriteLine();
 
+int[] reverseWithoutNewArr = SolvingBasicProblems.ReverseArrayWithoutNewArray(array1);
+Console.WriteLine("Reversed Array without using new array -- ");
+for (int i = 0; i < reverseWithoutNewArr.Length; i++)
+    Console.Write(reverseWithoutNewArr[i] + " ");
+
+Console.WriteLine();
+
+int[] rotatedArray = SolvingBasicProblems.RotateArrayKTimes(array1, 2);
+Console.WriteLine("Array after rotation -- ");
+for (int i = 0; i < reverseWithoutNewArr.Length; i++)
+    Console.Write(reverseWithoutNewArr[i] + " ");
+
 int sumOfAllArrayElements = SolvingBasicProblems.SumOfAllArrayElements(array1);
 Console.WriteLine($"Sum of all array elements - {sumOfAllArrayElements}");
 

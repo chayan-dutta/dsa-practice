@@ -16,8 +16,8 @@ public class SolvingBasicProblems()
 
         for (int i = 0; i < myArray.Length; i++)
         {
-            if (myArray[i] > maximum) 
-                maximum = myArray[i]; 
+            if (myArray[i] > maximum)
+                maximum = myArray[i];
         }
 
         Console.WriteLine("The maximum number in this array is - {0}", maximum);
@@ -31,9 +31,9 @@ public class SolvingBasicProblems()
     public static int SumOfAllArrayElements(int[] myArray)
     {
         int sum = 0;
-        for(int i = 0;i < myArray.Length;i++)
+        for (int i = 0; i < myArray.Length; i++)
             sum += myArray[i];
-        
+
         return sum;
     }
 
@@ -58,7 +58,7 @@ public class SolvingBasicProblems()
 
         for (int i = 0; i < myArray.Length; i++)
         {
-            if (myArray[i] % 2  == 0)
+            if (myArray[i] % 2 == 0)
                 countEven++;
             else
                 countOdd++;
@@ -91,13 +91,38 @@ public class SolvingBasicProblems()
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="arr"></param>
+    /// <returns></returns>
+    public static int[] ReverseArrayWithoutNewArray(int[] arr)
+    {
+        int n = arr.Length, left = 0;
+        int right = n - 1;
+
+        // Swap the elements in the indices
+
+        while (left <= right)
+        {
+            // Swap without using 3rd variable
+            arr[left] = arr[left] + arr[right];
+            arr[right] = arr[left] - arr[right];
+            arr[left] = arr[left] - arr[right];
+
+            left++;
+            right--;
+        }
+        return arr;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="myArray"></param>
     /// <returns></returns>
     public static bool IsSortedArray(int[] myArray)
     {
         int n = myArray[0];
 
-        for(int i = 1; i < myArray.Length; i++)
+        for (int i = 1; i < myArray.Length; i++)
         {
             if (n <= myArray[i])
                 n = myArray[i];
@@ -150,7 +175,7 @@ public class SolvingBasicProblems()
     {
         Dictionary<int, int> uniqueTracker = [];
 
-        foreach(int num in arr)
+        foreach (int num in arr)
         {
             if (!uniqueTracker.ContainsKey(num))
                 uniqueTracker.Add(num, 1);
@@ -159,5 +184,89 @@ public class SolvingBasicProblems()
         }
         var kvp = uniqueTracker.FirstOrDefault(x => x.Value == 1);
         return kvp.Key;
+    }
+
+    /// <summary>
+    /// Rotates the given array to the right by 'k' positions.
+    /// </summary>
+    /// <param name="array">The input array to rotate.</param>
+    /// <param name="k">Number of times the array should be rotated to the right.</param>
+    /// <returns>A new array that is the rotated version of the original array.</returns>
+    /// <remarks>
+    /// This implementation performs a right rotation using array slicing technique.
+    /// Time Complexity: O(n), Space Complexity: O(n)
+    /// For explanation, see - https://youtu.be/ODBaRTfZsDg?t=2407&si=Y1WUrp7lY10TNE7f
+    /// </remarks>
+    public static int[] RotateArrayKTimes(int[] array, int k)
+    {
+        int n = array.Length;
+
+        // Edge case: if array is empty or k is 0, return original array
+        if (n == 0 || k == 0)
+            return array;
+
+        // Normalize k: if k >= n, rotate only the remainder steps
+        k = k % n;
+
+        // Create a new array to hold the rotated result
+        int[] result = new int[n];
+        int j = 0;
+
+        // Copy the last 'k' elements from the original array to the start of result array
+        // These will be the new front part after right rotation
+        for (int i = n - k; i < n; i++)
+        {
+            result[j++] = array[i];
+        }
+
+        // Copy the first 'n-k' elements to the end of result array
+        for (int i = 0; i < n - k; i++)
+        {
+            result[j++] = array[i];
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Rotates the array to the right by k positions **in-place** (without using a new array).
+    /// </summary>
+    /// <param name="array">The input array to rotate.</param>
+    /// <param name="k">Number of positions to rotate to the right.</param>
+    /// <returns>The same array rotated in-place.</returns>
+    public int[] RotateAnArrayKTimesWithoutUsingNewArray(int[] array, int k)
+    {
+        int n = array.Length;
+
+        // Edge case: empty array or no rotation needed
+        if (n == 0 || k == 0 || k % n == 0)
+            return array;
+
+        // Normalize k to avoid unnecessary full rotations
+        k = k % n;
+
+        // Step 1: Reverse the first part (from 0 to n-k-1)
+        ReversePartialArray(array, 0, n - k - 1);
+
+        // Step 2: Reverse the second part (from n-k to n-1)
+        ReversePartialArray(array, n - k, n - 1);
+
+        // Step 3: Reverse the whole array
+        ReversePartialArray(array, 0, n - 1);
+
+        return array;
+    }
+
+    /// <summary>
+    /// Reverses a portion of the array from 'left' to 'right' indices (inclusive).
+    /// </summary>
+    private static void ReversePartialArray(int[] array, int left, int right)
+    {
+        while (left < right)
+        {
+            int temp = array[left];
+            array[left++] = array[right];
+            array[right--] = temp;
+        }
     }
 }
